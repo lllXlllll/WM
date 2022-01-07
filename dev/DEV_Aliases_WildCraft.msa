@@ -1,0 +1,90 @@
+#########################################
+#                                       #
+#             DEV - WildCraft           #
+#                                       #
+#########################################
+
+*:/거지 [$amount = '']= >>>
+if($amount == '') {
+    msg('§f')
+    msg('§c ▲ §f잘못된 명령어입니다.')
+    msg('   §7사용법: /거지 <돈의 양>')
+    msg('§f')
+} else {
+    _TM(player(), $amount)
+}
+<<<
+
+*:/test [$function = '']= >>>
+  if($function == ''){
+    msg('§f')
+    msg('§c ▲ §f잘못된 명령어입니다.')
+    msg('   §7사용법: /test <기능>')
+    msg('§f')
+  } else if($function == '1') {
+
+    @block = get_block(ploc(player()))
+    @placeholder = set_placeholders(player(), '%mcmmo_power_level%')
+    _ATS(player(), @block, display_name(player()), true)
+    broadcast('§c ▲ DEBUG:§6' _IsInGroup(player(), 'admin'))
+
+  } else if($function == 's') {
+    foreach(@p in all_players()){
+      @group = pgroup(@p)
+      broadcast('§c ▲ DEBUG:§f '.@p @group)
+    }
+  } else if($function == 'p') {
+    @isVoted = set_placeholders('%cmi_votetop_1%')
+    broadcast(@isVoted)
+  } else if($function == 'r') {
+    @currentmeta = get_itemmeta(null)
+    @array = array_push(@currentmeta, array(damage: 0))
+    msg('§c ▲ DEBUG:§3' @array)
+    set_itemmeta(player(), null, @array)
+  } else if($function == 'q') {
+    _WU(player(), 'test <function>', 'test <기능>')
+  } else if($function == '2') {
+    broadcast('§f')
+    broadcast('§b ▶ §f환영합니다. 버드서버, §aWildCraft§f입니다.')
+    broadcast('§f')
+    broadcast('§f  §b 홈페이지 §8» §f§ohttps://www.apexsv.tk')
+    broadcast('§f  §2 카페 §8» §f§ohttps://cafe.naver.com/apexsv')
+    broadcast('§f  §3 디스코드 §8» §f§ohttps://discord.gg/KeVhNJS')
+    broadcast('§f')
+    broadcast('§f  §6 추천 §8» §f§ohttps://minelist.kr/servers/7228/votes/new')
+    broadcast('§f')
+    @default = vault_user_prefix('World_Spawn', player())
+    foreach(@player in all_players()){
+      action_msg(@player, colorize('§b  +'.@default.''.player().'§f님이 처음 접속하셨습니다.'))
+      title(@player, null, colorize(''.@default.''.player().'§f님이 처음 접속하셨습니다.'), 0, 0, 60)
+      play_sound(ploc(@player), array(sound: 'BLOCK_ANVIL_PLACE', null, volume: 100, null), @player)
+      set_timeout(2211, closure(
+      set_ploc(player(), array(13.500, 11, -0.5, 'World_Spawn'))))
+    }
+    set_list_name(player(), colorize('&8C&7| &f').player())
+    #title(player(), colorize('&6환영합니다!'), colorize('&f&o좋은 시간되세요~'), 0, 0, 120)
+    #broadcast(colorize('§b  +'.@default.''.player().'§f님이 처음 접속하셨습니다.'))
+    foreach(@player in all_players()){
+      @prefix = vault_user_prefix(ploc(@player)['world'], @player)
+      @group = vault_pgroup(@player)
+      broadcast('§c ▲ §cDEBUG:§f' colorize(@prefix).@player '§f'@group)
+    }
+  } else if($function == 'pm') {
+    broadcast(import('messages.kr'))
+  } else if($function == 'lang') {
+    broadcast('§f')
+    broadcast('§b ▶ §f환영합니다. 버드서버, §aWildCraft§f입니다.')
+    broadcast('§f')
+    broadcast('§f  §b 홈페이지 §8» §f§ohttps://www.apexsv.tk')
+    broadcast('§f  §2 카페 §8» §f§ohttps://cafe.naver.com/apexsv')
+    broadcast('§f  §3 디스코드 §8» §f§ohttps://discord.gg/KeVhNJS')
+    broadcast('§f')
+    broadcast('§f  §6 추천 §8» §f§ohttps://minelist.kr/servers/7228/votes/new')
+    broadcast('§f')
+  } else {
+    foreach(@player in all_players()){
+      play_sound(ploc(@player), array(sound: $function, null, volume: 100, null), @player)
+      action_msg(@player, colorize('§b  !  §e'.$function.' §f플레이중...'))
+    }
+  }
+<<<

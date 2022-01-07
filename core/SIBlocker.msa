@@ -1,0 +1,65 @@
+*:/op = >>>
+  if(player() == '~console'){
+    run('/op') 
+  } else {
+    msg('§f')
+    msg('§c ▲ §f권한이 없습니다.')
+    msg('   §7해당 명령어는 콘술에서만 사용이 가능합니다.')
+    msg('§f')
+ }
+<<<
+
+*:/deop = >>>
+  if(player() == '~console'){
+    run('/deop') 
+  } else {
+    msg('§f')
+    msg('§c ▲ §f권한이 없습니다.')
+    msg('   §7해당 명령어는 콘술에서만 사용이 가능합니다.')
+    msg('§f')
+  }
+<<<
+
+*:/pl = >>>
+  if(player() == '~console'){
+    run('/plugins')
+  } else {
+    msg('§f')
+    msg('§c ▲ §f권한이 없습니다.')
+    msg('   §7해당 명령어는 콘술에서만 사용이 가능합니다.')
+    msg('§f')
+ }
+<<<
+
+*:/plugins = >>>
+  if(player() == '~console'){
+    run('/plugins') 
+  } else {
+    msg('§f')
+    msg('§c ▲ §f권한이 없습니다.')
+    msg('   §7해당 명령어는 콘술에서만 사용이 가능합니다.')
+    msg('§f')
+ }
+<<<
+
+*:/? = >>>
+  if(player() == '~console'){
+    run('/help') 
+  } else {
+    msg('§f')
+    msg('§b ▶ §f도움이 필요하신가요?')
+    msg('   §7이 링크를 참고하세요. | §6https://wiki.apexsv.tk')
+    msg('§f')
+  }
+<<<
+
+*:/help = >>>
+  if(player() == '~console'){
+    run('/help') 
+  } else {
+    msg('§f')
+    msg('§b ▶ §f도움이 필요하신가요?')
+    msg('   §7이 링크를 참고하세요. | §6https://wiki.apexsv.tk')
+    msg('§f')
+  }
+<<<

@@ -1,0 +1,100 @@
+~Admin:/restart [$ = ''] = >>>
+  if($ == '') {
+    msg('§f')
+    msg('§c ▲ §f정말로 서버를 재부팅 하시겠습니까?')
+    msg('   §7사용법: /restart <사유>')
+    msg('§f')
+  } else {
+    broadcast('§f')
+    broadcast('§c ▲ §f15초 이내에 서버가 재부팅 될 예정입니다.')
+    broadcast('   §7안전한 곳에서 접속을 종료해주십시오.')
+    broadcast(colorize('   §7사유: §f'.$))
+    broadcast('§f') 
+    foreach(@player in all_players()){
+      action_msg(@player, '§b ▶ §f'.player().'§7님께서 서버 재부팅을 15초 이내로 시행하려합니다.')
+      title(@player, colorize('&4재부팅'), colorize('&c서버가 15초 이내로 재부팅됩니다.'), 0, 0, 60)
+    }
+    sleep(7)
+    foreach(@player in all_players()){
+      _DSC(@player, 'Lobby')
+    }
+    sleep(8)
+    foreach(@player in all_players()){
+      action_msg(@player, '§b ▶ §f'.player().'§7님께서 서버 재부팅을 했습니다.')
+      title(@player, colorize('&4재부팅'), colorize('&c서버가 재부팅됩니다.'), 0, 0, 60)
+    }
+    broadcast('§f')
+    broadcast('§c ▲ §f서버가 재부팅됩니다.')
+    broadcast('   §7자세한 내용은 홈페이지나 카페를 참고 하십시오.')
+    broadcast(colorize('   §7사유: §f'.$))
+    broadcast('§f')
+    run('/restart')
+  }
+<<<
+
+~Admin:/stop [$ = ''] = >>>
+  if($ == '') {
+    msg('§f')
+    msg('§c ▲ §f정말로 서버를 정지 하시겠습니까?')
+    msg('   §7사용법: /stop <사유>')
+    msg('§f')
+  } else {
+    broadcast('§f')
+    broadcast('§c ▲ §f15초 이내에 서버가 정지 될 예정입니다.')
+    broadcast('   §7안전한 곳에서 접속을 종료해주십시오.')
+    broadcast(colorize('   §7사유: §f'.$))
+    broadcast('§f') 
+    foreach(@player in all_players()){
+      title(@player, colorize('&4정지'), colorize('&c서버가 15초 이내로 정지됩니다.'), 0, 0, 60)
+      action_msg(@player, '§b ▶ §f'.player().'§7님께서 서버 정지을 15초 이내로 시행하려합니다.')
+    }
+    sleep(7)
+    foreach(@player in all_players()){
+      _DSC(@player, 'Lobby')
+    }
+    sleep(8)
+    foreach(@player in all_players()){
+      title(@player, colorize('&4정지'), colorize('&c서버가 정지됩니다.'), 0, 0, 60)
+      action_msg(@player, '§b ▶ §f'.player().'§7님께서 서버 정지을 했습니다.')
+    }
+    broadcast('§f')
+    broadcast('§c ▲ §f서버가 정지됩니다.')
+    broadcast('   §7자세한 내용은 홈페이지나 카페를 참고 하십시오.')
+    broadcast(colorize('   §7사유: §f'.$))
+    broadcast('§f')
+    run('/stop')
+  }
+<<<
+
+~Admin:/crl = >>>
+  export('reload.duration.commandhelper', simple_date('ss'))
+  broadcast('§f')
+  broadcast('§c ▲ §f패치가 적용됩니다.')
+  broadcast('   §7약간의 렉이 걸릴 수 있습니다.')
+  broadcast('§f')
+  run('/reloadaliases')
+  @display = simple_date('ss') - import('reload.duration.commandhelper')
+  _action_broadcast('§b ▶ §f패치가 완료 되었습니다. §7소요시간: §e'.@display.'§7초')
+<<<
+
+*:/reload = >>>
+  msg('§f')
+  msg('§c ▲ §f리로드는 불가능합니다.')
+  msg('   §7다른 명령어를 사용해주세요.')
+  msg('§f')
+<<<
+
+*:/rl = >>>
+  msg('§f')
+  msg('§c ▲ §f리로드는 불가능합니다.')
+  msg('   §7다른 명령어를 사용해주세요.')
+  msg('§f')
+<<<
+
+~Admin:/drestart = >>>
+  run('/restart')
+<<<
+
+~Admin:/dstop = >>>
+  run('/stop')
+<<<

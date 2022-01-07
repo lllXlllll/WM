@@ -1,0 +1,103 @@
+#########################################
+#                                       #
+#           ALIASES - WildCraft         #
+#                                       #
+#########################################
+
+#SIMPLE_ALIASES
+*:/스폰 = /spawn;
+*:/tmvhs = /spawn;
+*:/넴주 = /spawn;
+*:/spa = /spawn;
+*:/ㅅ = /spawn;
+*:/ㅅㅍ = /spawn;
+
+*:/경매 = /ah;
+*:/경매장 = /ah;
+
+*:/농부 [$amount = ''] = >>>
+  if($amount == ''){
+    msg('§f')
+    msg('§c ▲ §f잘못된 명령어입니다.')
+    msg('   §7사용법: /농부 <명>')
+    msg('   §71마리 당 §e100,000§7원')
+    msg('§f')
+  } else {
+    @x = multiply(100000, $amount)
+    @world = ploc(player())['world']
+    if(@world == 'World_Wild' || @world == 'World_Wild_nether' || @world == 'World_Wild_the_end'){
+        if(acc_balance(player()) >= @x) {
+            acc_subtract(player(), @x)
+            action_msg(player(), _PM('command.paid.money', array($amount)))
+            for(@i = 0, @i < $amount, @i++){
+                sudo('/summon villager ~ ~ ~ {Profession:0,Career:1,CareerLevel:3}');
+            }
+        } else {
+            action_msg(player(), _PM('command.nem'))
+        }
+    } else {
+        action_msg(player(), _PM('command.buyfarmer.na'))
+    }
+  }
+<<<
+
+*:/판매 [$price = ''] = >>>
+  if($price == ''){
+    msg('§f')
+    msg('§c ▲ §f잘못된 명령어입니다.')
+    msg('   §7사용법: /판매 <가격>')
+    msg('§f')
+  } else {
+    run('/ah sell '.$price)
+  }
+<<<
+
+~Admin:/getmeta = >>>
+  msg('§b ▶ §f'.get_itemmeta(null))
+<<<
+
+*:/blockname = >>>
+  @Block =  get_block(ploc(player()))
+  msg('§b ▶ §f현재 서있는 블럭의 이름은 §6'.@Block.'§f입니다.')
+  #broadcast('§c ▲ §cDEBUG:§f 'ploc(player()))
+<<<
+
+*:/mypet = >>>
+  if(has_permission(player()) == true) {
+    run('/mypet') 
+  } else {
+    msg('§f')
+    msg('§c ▲ §f잘못된 접근입니다.')
+    msg('   §7해당 명령어는 일반유저가 사용할 수 없습니다.')
+    msg('§f')
+  }
+<<<
+
+*:/블럭구매  [$amount = ''] = >>>
+  if($amount == '') {
+    msg('§f')
+    msg('§c ▲ §f잘못된 명령어입니다.')
+    msg('   §7사용법: /부동산 블럭구매 <수량>')
+    msg('§f')
+  } else {
+    run('/buyclaimblocks '.$amount)
+  }
+<<<
+
+*:/블럭판매  [$amount = ''] = >>>
+  if($amount == '') {
+    msg('§f')
+    msg('§c ▲ §f잘못된 명령어입니다.')
+    msg('   §7사용법: /부동산 블럭판매 <수량>')
+    msg('§f')
+  } else {
+    run('/sellclaimblocks '.$amount)
+  }
+<<<
+
+*:/자살 = >>>
+  pkill(player())
+  foreach(@player in all_players()){
+    action_msg(@player, '§4 ▶ §6'.player().'§f님이 자살을 선택하셨습니다.')
+  }
+<<<

@@ -1,0 +1,26 @@
+~Admin/Police:/say [$ = ''] = >>>
+if($ == ''){
+    msg('§f')
+    msg('§c ▲ §f잘못된 명령어입니다.')
+    msg('   §7사용법: /say <내용>')
+    msg('§f')
+} else {
+    try {
+        @prefix = vault_user_prefix(ploc(player())['world'], player())
+        foreach(@p in all_players()){
+            play_sound(ploc(@p), array(sound: 'ENTITY_PHANTOM_BITE', null, volume: 100, null), @p)
+            title(@p, null, '§c§l§o공지', 0, 0, 64)
+            action_msg(@p, colorize(@prefix.player().' &8»&f '.$))
+        }
+        broadcast(colorize('\n§6 ▶ §f알립니다.\n   '.@prefix.player().' &8»&f '.$.'\n '))
+    } catch(PlayerOfflineException @e) {
+        @name = to_upper(player())
+        foreach(@p in all_players()){
+            play_sound(ploc(@p), array(sound: 'ENTITY_PHANTOM_BITE', null, volume: 100, null), @p)
+            title(@p, null, '§c§l§o공지', 0, 0, 64)
+            action_msg(@p, colorize('§c§o'.player().' &8»&f '.$))
+        }
+        broadcast(colorize('\n§6 ▶ §f알립니다.\n   §c§o'.player().' &8»&f '.$.'\n '))
+    }
+}
+<<<

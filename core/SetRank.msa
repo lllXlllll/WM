@@ -1,0 +1,42 @@
+*:/sruser [$p = ''] [$r = '']= >>>
+  if(player() == '~console' || pisop(player())) {
+    if($p == '' || $r == '') {
+      msg('§f')
+      msg('§c ▲ §f잘못된 명령어입니다.')
+      msg('   §7사용법: /sruser <플레이어> <등급>')
+      msg('§f')
+    } else {
+      @rank = to_lower($r)
+      if(@rank == 'yt' || @rank == '유튜버' || @rank == 'youtuber') {
+        run('/lp user '.$p.' parent set YT')
+        broadcast(_PM('system.sr.sat', array($p, '§cYT')))
+      } else if(@rank == 'mvp') {
+        run('/lp user '.$p.' parent set MVP')
+        broadcast(_PM('system.sr.sat', array($p, '§cMVP')))
+      } else if(@rank == 'vip') {
+        run('/lp user '.$p.' parent set VIP')
+        broadcast(_PM('system.sr.sat', array($p, '§aVIP')))
+      } else if(@rank == 'diamond' || @rank == 'd') {
+        run('/lp user '.$p.' parent set Diamond')
+        broadcast(_PM('system.sr.sat', array($p, '§b다이아몬드')))
+      } else if(@rank == 'gold' || @rank == 'g') {
+        run('/lp user '.$p.' parent set Gold')
+        broadcast(_PM('system.sr.sat', array($p, '§6금')))
+      } else if(@rank == 'iron' || @rank == 'g') {
+        run('/lp user '.$p.' parent set Iron')
+        broadcast(_PM('system.sr.sat', array($p, '§f철')))
+      } else if(@rank == 'coal' || @rank == 'c' || @rank == 'default') {
+        run('/lp user '.$p.' parent set default')
+        broadcast(_PM('system.sr.sat', array($p, '§8석탄')))
+      } else {
+        msg(_PM('system.sru.invaild'))    
+      }
+    }
+  } else {
+    msg('§f')
+    msg('§c ▲ §f권한이 없습니다.')
+    msg('   §7해당 명령어는 관리자만 사용이 가능합니다.')
+    msg('§f')
+    die()
+  }
+<<<
