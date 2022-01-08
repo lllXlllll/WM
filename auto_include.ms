@@ -7,7 +7,7 @@
 #INCLUDE
 include('lib/libsys.ms')
 include('lib/libwc.ms')
-include('dev/libwcd.ms')
+include('lib/libwcd.ms')
 
 #Messages Parser
 proc _PM(@message, @array = '') {
